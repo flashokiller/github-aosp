@@ -14,10 +14,20 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
       
+    - name: Cleanup
+      uses: rokibhasansagar/slimhub_actions@v3
+      
+    - name: Maximize build disk space
+      uses: easimon/maximize-build-space@v4
+
+
+
+      
 
         
     - name: Sync 
       run: |
+        df -h
         export CCACHE_COMPRESS=1
         export USE_CCACHE=1
         git config --global user.name "adrian-8901"
