@@ -30,7 +30,7 @@ jobs:
         mkdir ~/fluid
         cd ~/fluid
         sudo apt-get install git
-        git clone https://github.com/akhilnarang/scripts.git script
+        git clone https://github.com/akhilnarang/scripts.git ~/script
         cd ~/script
         bash setup/android_build_env.sh
         cd ~/fluid
@@ -46,9 +46,7 @@ jobs:
         export WITH_GAPPS=true
         export SELINUX_IGNORE_NEVERALLOWS=true
         export TZ=Asia/Hong_Kong
-        mka bacon -j24
-    - name: Upload
-      run: |
-        cd ~/fluid
-        curl --upload-file out/target/product/umi/*.zip https://transfer.sh
-        rm -rf out/target/product/umi/*.zip
+        mka init
+        mka bootimg
+        mka sepolicy
+
